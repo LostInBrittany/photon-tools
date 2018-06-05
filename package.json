@@ -1,0 +1,28 @@
+{
+  "name": "@photon-elements/photon-tools",
+  "version": "1.0.0",
+  "description": "A set of utilities used by photon-elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "mv ./node_modules/big.js/big.js ./node_modules/big.js/big.umd.js ; mv ./node_modules/big.js/big.mjs ./node_modules/big.js/big.js"
+  },
+  "homepage": "https://github.com/LostInBrittany/photon-tools",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LostInBrittany/photon-tools.git"
+  },
+  "keywords": [
+    "photon",
+    "warp10"
+  ],
+  "author": "Horacio Gonzalez (@lostinbrittany)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LostInBrittany/photon-tools/issues"
+  },
+  "dependencies": {
+    "big.js": "^5.1.2"
+  },
+  "devDependencies": {}
+}
