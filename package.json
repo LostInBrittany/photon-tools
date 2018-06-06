@@ -1,11 +1,11 @@
 {
   "name": "@photon-elements/photon-tools",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A set of utilities used by photon-elements",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "mv ./node_modules/big.js/big.js ./node_modules/big.js/big.umd.js ; mv ./node_modules/big.js/big.mjs ./node_modules/big.js/big.js"
+    "prepare": "mkdir -p ./lib; cp ./node_modules/big.js/big.mjs ./lib/big.esm.js"
   },
   "homepage": "https://github.com/LostInBrittany/photon-tools",
   "repository": {

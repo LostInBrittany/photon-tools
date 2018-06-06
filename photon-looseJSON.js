@@ -1,4 +1,4 @@
-import Big from 'big.js/big.js';
+import Big from './lib/big.esm.js';
 
 let _looseJSON = {};
 
