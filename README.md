@@ -23,4 +23,8 @@ but adding support for the much needed null, NaN and infinities, and big integer
 
 It exports a `looseJSON` object with two methods, `looseJSON.parse()` and `looseJSON.stringify()`.
 
+### photon-ts-plotting-tools
+
+An utility class helping to deal with time-series plotting
+
 
