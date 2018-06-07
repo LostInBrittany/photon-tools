@@ -23,8 +23,28 @@ but adding support for the much needed null, NaN and infinities, and big integer
 
 It exports a `looseJSON` object with two methods, `looseJSON.parse()` and `looseJSON.stringify()`.
 
+
+### photon-timeseries-tools
+
+A set of tools to deal with time-series:
+
+- `isArray()`
+- `isTimeseries()`
+- `jsonToStack()`
+- `serializeTimeseriesMetadata()`
+- `sameMetadata()`
+- `isPlottable()`
+- `isAnnotable()`
+- `sort()`
+- `timeRange()`
+- `timeseriesToC3()`
+
+### photon-timeseries-to-c3-worker
+
+A [web worker] to parse Warp 10 JSON response and translate it to C3 data format
+
+
 ### photon-ts-plotting-tools
 
 An utility class helping to deal with time-series plotting
-
 
