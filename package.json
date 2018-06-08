@@ -1,6 +1,6 @@
 {
   "name": "@photon-elements/photon-tools",
-  "version": "1.2.3",
+  "version": "1.3.0",
   "description": "A set of utilities used by photon-elements",
   "main": "index.js",
   "scripts": {

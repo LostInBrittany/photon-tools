@@ -26,5 +26,5 @@ onmessage = (message) => {
   let c3Data = timeseriesTools.timeseriesToC3(stack);
 
   console.log('[Worker: timerseries-to-c3] c3Data', c3Data);
-  postMessage(c3Data);
+  postMessage({ c3: c3Data, __meta: message.data.__meta });
 }

@@ -1275,7 +1275,7 @@ _timeseriesTools.serializeTimeseriesMetadata = (timeseries) => {
   Object.keys(timeseries.l).forEach((key) => {
     serializedLabels.push(key + '=' + timeseries.l[key]);
   });
-  return `${timeseries.id ? `${timeseries.id} ` : ''} ${timeseries.c}{${serializedLabels.join(',')}}`;
+  return `${timeseries.c}{${serializedLabels.join(',')}}`;
 };
 
 
@@ -1420,6 +1420,8 @@ _timeseriesTools.timeRange = (timeseries) => {
 
     if (item.name) {
       data.names['Y' + i] = item.name;
+    }  else {
+      data.names['Y' + i] = _timeseriesTools.serializeTimeseriesMetadata(item);
     }
 
     if (item.color) {
@@ -1460,5 +1462,5 @@ onmessage = (message) => {
   let c3Data = timeseriesTools.timeseriesToC3(stack);
 
   console.log('[Worker: timerseries-to-c3] c3Data', c3Data);
-  postMessage(c3Data);
+  postMessage({ c3: c3Data, __meta: message.data.__meta });
 };
