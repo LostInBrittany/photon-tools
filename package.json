@@ -1,6 +1,6 @@
 {
   "name": "@photon-elements/photon-tools",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A set of utilities used by photon-elements",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,9 @@
     "big.js": "^5.1.2"
   },
   "devDependencies": {
-    "rollup": "^0.60.1"
+    "@babel/core": "7.0.0-beta.51",
+    "@babel/preset-env": "7.0.0-beta.51",
+    "rollup": "^0.60.1",
+    "rollup-plugin-babel": "^4.0.0-beta.7"
   }
 }
