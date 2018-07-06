@@ -35,6 +35,7 @@ _timeseriesTools.isTimeseries = (timeseries) => {
 _timeseriesTools.jsonToStack = (jsonList, prefixId) => {
 
   let stack = [];
+  let id;
 
   jsonList.forEach((item, index) => {
     if ((prefixId !== undefined) && (prefixId !== '')) {

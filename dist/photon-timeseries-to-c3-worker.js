@@ -1297,6 +1297,7 @@
 
   _timeseriesTools.jsonToStack = function (jsonList, prefixId) {
     var stack = [];
+    var id;
     jsonList.forEach(function (item, index) {
       if (prefixId !== undefined && prefixId !== '') {
         id = "".concat(prefixId, "-").concat(index);
