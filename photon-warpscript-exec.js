@@ -47,9 +47,11 @@ const PhotonWarpscriptExec = {
     },
     handleError: (error) => {
         if (error.status !== undefined) {
-            error.elapsed = PhotonWarpscriptExec._getElapsed(error);
-            error.fetched = PhotonWarpscriptExec._getFetched(error);
-            error.operations = PhotonWarpscriptExec._getOperations(error);
+            error.options = {
+                elapsed: PhotonWarpscriptExec._getFetched(error),
+                fetched: PhotonWarpscriptExec._getElapsed(error),
+                operations: PhotonWarpscriptExec._getOperations(error),
+            };
             error.errorLine = PhotonWarpscriptExec._getErrorLine(error);
             error.errorMsg = PhotonWarpscriptExec._getErrorMsg(error);
         }
