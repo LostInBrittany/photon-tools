@@ -61,14 +61,21 @@ _timeseriesTools.jsonToStack = (jsonList, prefixId) => {
  * Generated a serialized version of a Warp 10 timeseries metadata
  *
  * @param {{timeseries}} timeseries The timeseries
+ * @param {{Number}} labelLimit the max number of labels to show
  * @return {{String}}
  */
-_timeseriesTools.serializeTimeseriesMetadata = (timeseries) => {
+_timeseriesTools.serializeTimeseriesMetadata = (timeseries, labelLimit) => {
   let serializedLabels = [];
 
-  Object.keys(timeseries.l).forEach((key) => {
-    serializedLabels.push(key + '=' + timeseries.l[key]);
-  });
+  let keys = Object.keys(timeseries.l);
+  for (let i=0; i<keys.length; i++) {
+    let key = keys[i];
+    if (labelLimit > 0 && i >= labelLimit) {
+      erializedLabels.push('…');
+    }
+    serializedLabels.push(`${key}=${timeseries.l[key]}`);
+  }
+
   return `${timeseries.c}{${serializedLabels.join(',')}}`;
 }
 
