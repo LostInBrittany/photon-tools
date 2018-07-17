@@ -71,7 +71,8 @@ _timeseriesTools.serializeTimeseriesMetadata = (timeseries, labelLimit) => {
   for (let i=0; i<keys.length; i++) {
     let key = keys[i];
     if (labelLimit > 0 && i >= labelLimit) {
-      erializedLabels.push('…');
+      serializedLabels.push('…');
+      break;
     }
     serializedLabels.push(`${key}=${timeseries.l[key]}`);
   }

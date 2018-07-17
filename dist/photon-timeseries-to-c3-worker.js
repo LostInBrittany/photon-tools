@@ -1320,15 +1320,25 @@
    * Generated a serialized version of a Warp 10 timeseries metadata
    *
    * @param {{timeseries}} timeseries The timeseries
+   * @param {{Number}} labelLimit the max number of labels to show
    * @return {{String}}
    */
 
 
-  _timeseriesTools.serializeTimeseriesMetadata = function (timeseries) {
+  _timeseriesTools.serializeTimeseriesMetadata = function (timeseries, labelLimit) {
     var serializedLabels = [];
-    Object.keys(timeseries.l).forEach(function (key) {
-      serializedLabels.push(key + '=' + timeseries.l[key]);
-    });
+    var keys = Object.keys(timeseries.l);
+
+    for (var i = 0; i < keys.length; i++) {
+      var key = keys[i];
+
+      if (labelLimit > 0 && i >= labelLimit) {
+        erializedLabels.push('…');
+      }
+
+      serializedLabels.push("".concat(key, "=").concat(timeseries.l[key]));
+    }
+
     return "".concat(timeseries.c, "{").concat(serializedLabels.join(','), "}");
   };
   /**
