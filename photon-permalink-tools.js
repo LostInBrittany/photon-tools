@@ -111,7 +111,7 @@ _photonPermalinkTools.decodePermalink = (permalink, debug=false) => {
       ? _photonPermalinkTools.decode(permalinkFragments[2])
       : null;
   let backend = (permalinkFragments.length > 3 && permalinkFragments[3]) 
-      ?c_photonPermalinkTools.decodeBackend(permalinkFragments[3]) 
+      ?_photonPermalinkTools.decodeBackend(permalinkFragments[3]) 
       : null;
 
   if (debug) {
