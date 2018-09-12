@@ -109,10 +109,10 @@ _photonPermalinkTools.decodePermalink = (permalink, debug=false) => {
 
   let warpscript = (permalinkFragments.length > 2 && permalinkFragments[2]) 
       ? _photonPermalinkTools.decode(permalinkFragments[2])
-      : '';
+      : null;
   let backend = (permalinkFragments.length > 3 && permalinkFragments[3]) 
       ?c_photonPermalinkTools.decodeBackend(permalinkFragments[3]) 
-      : defaultBackend;
+      : null;
 
   if (debug) {
     console.debug('[photonPermalinkTools] decodePermalink', { warpscript, backend });
