@@ -76,6 +76,7 @@ _photonPermalinkTools.decodeBackend = (permalink, debug = false) => {
   if (!decoded) {
     return false;
   }
+  let backend;
   try {
     backend = JSON.parse(decoded);
   } catch (e) {
