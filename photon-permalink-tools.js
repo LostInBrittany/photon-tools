@@ -98,7 +98,7 @@ _photonPermalinkTools.generatePermalink = (warpscript, backend, debug=false) => 
   let encodedWarpscript = _photonPermalinkTools.encode(warpscript, debug);
   let encodedBackend = _photonPermalinkTools.encodeBackend(backend, debug);
   if (debug) {
-    console.debug('[photonPermalinkTools]  generatePermalink', `/${encodedWarpscript}/${encodedBackend}`);
+    console.debug('[photonPermalinkTools] generatePermalink', `/${encodedWarpscript}/${encodedBackend}`);
   }
   return `/${encodedWarpscript}/${encodedBackend}`;
 }
@@ -114,9 +114,19 @@ _photonPermalinkTools.decodePermalink = (permalink, debug=false) => {
       : defaultBackend;
 
   if (debug) {
-    console.debug('[photonPermalinkTools]  decodePermalink', { warpscript, backend });
+    console.debug('[photonPermalinkTools] decodePermalink', { warpscript, backend });
   }
   return { warpscript, backend };
+}
+
+_photonPermalinkTools.cropPermalink = (permalink, maxDisplayLength,  debug=false) => {
+  if (debug) {
+    console.debug('[photonPermalinkTools cropPermalink', maxDisplayLength);
+  }
+  if (permalink.length > maxDisplayLength) {
+    return permalink.slice(0, maxDisplayLength) + '...';
+  }
+  return permalink;
 }
 
 export const photonPermalinkTools = _photonPermalinkTools;
