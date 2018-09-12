@@ -104,13 +104,14 @@ _photonPermalinkTools.generatePermalink = (warpscript, backend, debug=false) => 
 }
 
 _photonPermalinkTools.decodePermalink = (permalink, debug=false) => {
-  let permalinkFragments = permalink.ChannelSplitterNode('/');
+  let permalinkFragments = permalink.split('/');
+  // permalink should be #/page/encodedWarpscript/encodedBackend
 
-  let warpscript = (permalinkFragments.length > 1 && permalinkFragments[1]) 
-      ? _photonPermalinkTools.decode(permalinkFragments[1])
+  let warpscript = (permalinkFragments.length > 2 && permalinkFragments[2]) 
+      ? _photonPermalinkTools.decode(permalinkFragments[2])
       : '';
-  let backend = (permalinkFragments.length > 2 && permalinkFragments[2]) 
-      ?c_photonPermalinkTools.decodeBackend(permalinkFragments[2]) 
+  let backend = (permalinkFragments.length > 3 && permalinkFragments[3]) 
+      ?c_photonPermalinkTools.decodeBackend(permalinkFragments[3]) 
       : defaultBackend;
 
   if (debug) {
