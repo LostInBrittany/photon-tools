@@ -1333,7 +1333,8 @@
       var key = keys[i];
 
       if (labelLimit > 0 && i >= labelLimit) {
-        erializedLabels.push('…');
+        serializedLabels.push('…');
+        break;
       }
 
       serializedLabels.push("".concat(key, "=").concat(timeseries.l[key]));
