@@ -101,7 +101,7 @@ _photonPermalinkTools.generatePermalink = (warpscript, backend, debug=false) => 
   if (debug) {
     console.debug('[photonPermalinkTools] generatePermalink', `/permalink/${encodedWarpscript}/${encodedBackend}`);
   }
-  return `/${encodedWarpscript}/${encodedBackend}`;
+  return `/permalink/${encodedWarpscript}/${encodedBackend}`;
 }
 
 _photonPermalinkTools.decodePermalink = (permalink, debug=false) => {
