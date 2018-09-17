@@ -99,7 +99,7 @@ _photonPermalinkTools.generatePermalink = (warpscript, backend, debug=false) => 
   let encodedWarpscript = _photonPermalinkTools.encode(warpscript, debug);
   let encodedBackend = _photonPermalinkTools.encodeBackend(backend, debug);
   if (debug) {
-    console.debug('[photonPermalinkTools] generatePermalink', `/${encodedWarpscript}/${encodedBackend}`);
+    console.debug('[photonPermalinkTools] generatePermalink', `/permalink/${encodedWarpscript}/${encodedBackend}`);
   }
   return `/${encodedWarpscript}/${encodedBackend}`;
 }
