@@ -36,9 +36,9 @@
   }
 
   /*
-   *  big.js v5.1.2
+   *  big.js v5.2.2
    *  A small, fast, easy-to-use library for arbitrary-precision decimal arithmetic.
-   *  Copyright (c) 2017 Michael Mclaughlin <M8ch88l@gmail.com>
+   *  Copyright (c) 2018 Michael Mclaughlin <M8ch88l@gmail.com>
    *  https://github.com/MikeMcl/big.js/LICENCE
    */
 
@@ -135,7 +135,7 @@
     Big.RM = RM;
     Big.NE = NE;
     Big.PE = PE;
-    Big.version = '5.0.2';
+    Big.version = '5.2.2';
     return Big;
   }
   /*
@@ -211,7 +211,7 @@
       } else if (rm === 2) {
         more = xc[i] > 5 || xc[i] == 5 && (more || i < 0 || xc[i + 1] !== UNDEFINED || xc[i - 1] & 1);
       } else if (rm === 3) {
-        more = more || xc[i] !== UNDEFINED || i < 0;
+        more = more || !!xc[0];
       } else {
         more = false;
         if (rm !== 0) throw Error(INVALID_RM);
@@ -667,7 +667,7 @@
 
     if (!xc[0] || !yc[0]) return yc[0] ? y : new Big(xc[0] ? x : a * 0);
     xc = xc.slice(); // Prepend zeros to equalise exponents.
-    // Note: Faster to use reverse then do unshifts.
+    // Note: reverse faster than unshifts.
 
     if (a = xe - ye) {
       if (a > 0) {
@@ -742,19 +742,20 @@
     return isneg ? one.div(y) : y;
   };
   /*
-   * Return a new Big whose value is the value of this Big rounded to a maximum of dp decimal
-   * places using rounding mode rm.
+   * Return a new Big whose value is the value of this Big rounded using rounding mode rm
+   * to a maximum of dp decimal places, or, if dp is negative, to an integer which is a
+   * multiple of 10**-dp.
    * If dp is not specified, round to 0 decimal places.
    * If rm is not specified, use Big.RM.
    *
-   * dp? {number} Integer, 0 to MAX_DP inclusive.
+   * dp? {number} Integer, -MAX_DP to MAX_DP inclusive.
    * rm? 0, 1, 2 or 3 (ROUND_DOWN, ROUND_HALF_UP, ROUND_HALF_EVEN, ROUND_UP)
    */
 
 
   P.round = function (dp, rm) {
     var Big = this.constructor;
-    if (dp === UNDEFINED) dp = 0;else if (dp !== ~~dp || dp < 0 || dp > MAX_DP) throw Error(INVALID_DP);
+    if (dp === UNDEFINED) dp = 0;else if (dp !== ~~dp || dp < -MAX_DP || dp > MAX_DP) throw Error(INVALID_DP);
     return round(new Big(this), dp, rm === UNDEFINED ? Big.RM : rm);
   };
   /*
@@ -777,16 +778,17 @@
 
     if (s < 0) throw Error(NAME + 'No square root'); // Estimate.
 
-    s = Math.sqrt(x.toString()); // Math.sqrt underflow/overflow?
-    // Re-estimate: pass x to Math.sqrt as integer, then adjust the result exponent.
+    s = Math.sqrt(x + ''); // Math.sqrt underflow/overflow?
+    // Re-estimate: pass x coefficient to Math.sqrt as integer, then adjust the result exponent.
 
     if (s === 0 || s === 1 / 0) {
       c = x.c.join('');
       if (!(c.length + e & 1)) c += '0';
-      r = new Big(Math.sqrt(c).toString());
-      r.e = ((e + 1) / 2 | 0) - (e < 0 || e & 1);
+      s = Math.sqrt(c);
+      e = ((e + 1) / 2 | 0) - (e < 0 || e & 1);
+      r = new Big((s == 1 / 0 ? '1e' : (s = s.toExponential()).slice(0, s.indexOf('e') + 1)) + e);
     } else {
-      r = new Big(s.toString());
+      r = new Big(s);
     }
 
     e = r.e + (Big.DP += 4); // Newton-Raphson iteration.
